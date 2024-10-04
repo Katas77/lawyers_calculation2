@@ -8,6 +8,5 @@ public class Main {
         System.out.println("Количество дней " + payment.getCount());
         System.out.println("Итого к выплате подлежит сумма  - " + payment.getTotal() + " руб., которую прошу перечислить на банковские реквизиты:");
 
-
         }
     }

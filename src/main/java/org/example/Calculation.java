@@ -1,4 +1,5 @@
 package org.example;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -12,19 +13,6 @@ public class Calculation {
     public int getCount() {
         return count;
     }
-
-    public String action1 = "допрос подозреваемого ";
-    public String action2 = "допрос обвиняемого";
-    public String action3 = "предъявление постановления о назначении экспертизы  ";
-    public String action4 = "предъявление заключения эксперта ";
-    public String action5 = "уведомление об окончании следственных действий ";
-    public String action6 = "ознакомление с материалами уголовного дела ";
-    public String action7 = "очная ставка";
-    public String action8 = " проверка показаний на месте";
-    public String action9 = " составление протокола задержания  ";
-    public String action10 = " рассмотрение ходатайство следователя об избрании меры пресечения";
-    public String action11 = " рассмотрение ходатайство следователя о продлении срока содержания под стражей";
-    public String action12 = " изъятия предметов, имеющих значение для уголовного дела, выемка. ";
 
 
     public int getTotal() {
@@ -96,18 +84,18 @@ public class Calculation {
 
     public void valid(int validA) {
         switch (validA) {
-            case 1 -> action = action1;
-            case 2 -> action = action2;
-            case 3 -> action = action3;
-            case 4 -> action = action4;
-            case 5 -> action = action5;
-            case 6 -> action = action6;
-            case 7 -> action = action7;
-            case 8 -> action = action8;
-            case 9 -> action = action9;
-            case 10 -> action = action10;
-            case 11 -> action = action11;
-            case 12 -> action = action12;
+            case 1 -> action = Actions.action1;
+            case 2 -> action = Actions.action2;
+            case 3 -> action = Actions.action3;
+            case 4 -> action = Actions.action4;
+            case 5 -> action = Actions.action5;
+            case 6 -> action = Actions.action6;
+            case 7 -> action = Actions.action7;
+            case 8 -> action = Actions.action8;
+            case 9 -> action = Actions.action9;
+            case 10 -> action = Actions.action10;
+            case 11 -> action = Actions.action11;
+            case 12 -> action = Actions.action12;
         }
     }
 
