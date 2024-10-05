@@ -1,4 +1,6 @@
-package org.example;
+package org.example.pay;
+
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -6,18 +8,12 @@ import java.util.*;
 
 public class Calculation {
     List<PaymentDay> paymentList = new ArrayList<>();
+    @Getter
     public int count = 0;
     public String action;
+    @Getter
     public int total;
 
-    public int getCount() {
-        return count;
-    }
-
-
-    public int getTotal() {
-        return total;
-    }
 
     public String result() {
         System.out.println("Введите пункт 'а' или  'б' или 'в'или  'г'");
@@ -36,10 +32,13 @@ public class Calculation {
             int month = Integer.parseInt(monthSt);
             String daySt = arrayDate[0] + arrayDate[1];
             int day = Integer.parseInt(daySt);
-            System.out.println("Вид следственного действия");
+            System.out.println("Введите вид следственного действия");
             int validA = new Scanner(System.in).nextInt();
             this.valid(validA);
-            PaymentDay payment = new PaymentDay(action, LocalDate.of(year, month, day));
+            PaymentDay payment= PaymentDay.builder()
+                    .action(action)
+                    .date(LocalDate.of(year, month, day))
+                    .build();
             paymentList.add(payment);
         }
         return alla(paragraph);
@@ -69,10 +68,10 @@ public class Calculation {
             String dayER = formatter.format(payment.getDate());
             String sd = formatter2.format(payment.getDate().getDayOfWeek());
             if (payment.getDate().isBefore(date1Oct)) {
-                if (sd.contains("суббота") || sd.contains("воскресенье")) {
+                if (valid(sd,payment)) {
                     pay = dayOff24;
                 } else pay = day24;
-            } else if (sd.contains("суббота") || sd.contains("воскресенье")) {
+            } else if (valid(sd,payment)) {
                 pay = dayOff25;
             } else pay = day25;
             total = total + pay;
@@ -80,7 +79,6 @@ public class Calculation {
         }
         return all;
     }
-
 
     public void valid(int validA) {
         switch (validA) {
@@ -97,6 +95,11 @@ public class Calculation {
             case 11 -> action = Actions.action11;
             case 12 -> action = Actions.action12;
         }
+    }
+
+
+    private boolean valid(String sd,PaymentDay payment){
+        return sd.contains("суббота") || sd.contains("воскресенье")|| Arrays.stream(PaymentDay.holidays).anyMatch(day->payment.getDate().isEqual(day));
     }
 
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.pay;
 
 public class Actions {
     public  static String action1 = "допрос подозреваемого";
